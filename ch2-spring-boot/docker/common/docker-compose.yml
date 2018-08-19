@@ -1,6 +1,6 @@
 version: '2'
 services:
-  simpleservice:
+  licenseservice:
       image: maxbezko/tmx-license-service:chapter2
       ports:
         - "8080:8080"
