@@ -1,0 +1,15 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: file:/home/maksym/Projects/microservices/spring-cloud-action/ch3-config/config-server/src/main/resources/config/license-service
+
+#  cloud:
+#    config:
+#      server:
+#      encrypt.enabled: false
