@@ -2,4 +2,4 @@
 echo "********************************************************"
 echo "Starting Configuration Server"
 echo "********************************************************"
-java -jar /usr/local/config-server/@project.build.finalName@.jar
+java -cp /usr/local/config-server/@project.build.finalName@.jar -jar /usr/local/config-server/@project.build.finalName@.jar
