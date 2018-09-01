@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @EnableFeignClients
-@EnableCircuitBreaker
 @SpringBootApplication
+@EnableCircuitBreaker
 public class Application {
     @LoadBalanced
     @Bean
