@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: routing-server
+  profiles:
+    active:
+      default
+  cloud:
+    config:
+      enabled: true

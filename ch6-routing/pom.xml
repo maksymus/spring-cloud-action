@@ -21,6 +21,7 @@
     <modules>
         <module>config-server</module>
         <module>discovery-server</module>
+        <module>routing-server</module>
         <module>license-service</module>
         <module>organization-service</module>
     </modules>
