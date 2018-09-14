@@ -1,0 +1,85 @@
+version: '2'
+services:
+  discovery-server:
+     image:   maxbezko/tmx-discovery-server:chapter7
+     ports:
+       - "8761:8761"
+  config-server:
+      image: maxbezko/tmx-config-server:chapter7
+      ports:
+         - "8888:8888"
+      environment:
+         EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+         EUREKASERVER_PORT: "8761"
+         ENCRYPT_KEY:       "IMSYMMETRIC"
+  # configserver2:
+  #     image: maxbezko/tmx-config-server:chapter7
+  #     ports:
+  #        - "8889:8889"
+  #     links:
+  #         - "eurekaserver:eurekaserver"
+  #     environment:
+  #       EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+  #       EUREKASERVER_PORT:8761
+  #       ENCRYPT_KEY:       "IMSYMMETRIC"
+  routing-server:
+      image: maxbezko/tmx-routing-server:chapter7
+      ports:
+        - "5555:5555"
+      environment:
+        PROFILE: "default"
+        SERVER_PORT: "5555"
+        CONFIGSERVER_URI: "http://config-server:8888"
+        EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+        EUREKASERVER_PORT:        "8761"
+        DATABASESERVER_PORT:      "5432"
+        CONFIGSERVER_PORT:        "8888"
+        ORGSERVERNEW_PORT:        "8087"
+  database:
+      image: postgres:9.5
+      ports:
+      - "5432:5432"
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=p0stgr@s
+        - POSTGRES_DB=eagle_eye_local
+  license-service:
+      image: maxbezko/tmx-license-service:chapter7
+      ports:
+        - "8080:8080"
+      environment:
+        PROFILE: "default"
+        SERVER_PORT: "8080"
+        CONFIGSERVER_URI: "http://config-server:8888"
+        EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+        EUREKASERVER_PORT:   "8761"
+        CONFIGSERVER_PORT:   "8888"
+        DATABASESERVER_PORT: "5432"
+        ZUULSERVER_PORT:     "5555"
+        ENCRYPT_KEY:       "IMSYMMETRIC"
+  organization-service:
+      image: maxbezko/tmx-organization-service:chapter7
+      ports:
+        - "8085:8085"
+      environment:
+        PROFILE: "default"
+        SERVER_PORT: "8085"
+        CONFIGSERVER_URI: "http://config-server:8888"
+        EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+        EUREKASERVER_PORT:   "8761"
+        CONFIGSERVER_PORT:   "8888"
+        DATABASESERVER_PORT: "5432"
+        ENCRYPT_KEY:       "IMSYMMETRIC"
+#  organization-service2:
+#      image: maxbezko/tmx-organization-service:chapter7
+#      ports:
+#        - "8086:8086"
+#      environment:
+#        PROFILE: "default"
+#        SERVER_PORT: "8085"
+#        CONFIGSERVER_URI: "http://config-server:8888"
+#        EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+#        EUREKASERVER_PORT:   "8761"
+#        CONFIGSERVER_PORT:   "8888"
+#        DATABASESERVER_PORT: "5432"
+#        ENCRYPT_KEY:       "IMSYMMETRIC"
