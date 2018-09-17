@@ -35,6 +35,19 @@ services:
         DATABASESERVER_PORT:      "5432"
         CONFIGSERVER_PORT:        "8888"
         ORGSERVERNEW_PORT:        "8087"
+  authentication-server:
+        image: maxbezko/tmx-authentication-server:chapter7
+        ports:
+          - "8901:8901"
+        environment:
+          PROFILE: "default"
+          SERVER_PORT: "8901"
+          DATABASE_PORT:     5432
+          CONFIGSERVER_PORT: 8888
+          EUREKASERVER_PORT: 8761
+          CONFIGSERVER_URI: "http://config-server:8888"
+          EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+          ENCRYPT_KEY:       "IMSYMMETRIC"
   database:
       image: postgres:9.5
       ports:
@@ -52,6 +65,7 @@ services:
         SERVER_PORT: "8080"
         CONFIGSERVER_URI: "http://config-server:8888"
         EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+        AUTHSERVER_URI:   "http://authentication-server:8901/auth/user"
         EUREKASERVER_PORT:   "8761"
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "5432"
@@ -66,6 +80,7 @@ services:
         SERVER_PORT: "8085"
         CONFIGSERVER_URI: "http://config-server:8888"
         EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
+        AUTHSERVER_URI:   "http://authentication-server:8901/auth/user"
         EUREKASERVER_PORT:   "8761"
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "5432"

@@ -19,5 +19,6 @@ eureka:
 
 zuul:
   prefix:  /api
+  sensitiveHeaders: Cookie,Set-Cookie # let Authorization propagate
 #  routes:
 #    organizationservice: /organization/**

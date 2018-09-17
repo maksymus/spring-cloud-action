@@ -21,8 +21,10 @@ echo ">>>>>>>>>>>> Database Server has started"
 echo "********************************************************"
 echo "Starting License Server with Configuration Service :  $CONFIGSERVER_URI";
 echo "********************************************************"
-java -Djava.security.egd=file:/dev/./urandom -Dserver.port=$SERVER_PORT     \
+java -Xmx256m                                                               \
+     -Djava.security.egd=file:/dev/./urandom -Dserver.port=$SERVER_PORT     \
      -Deureka.client.serviceUrl.defaultZone=$EUREKASERVER_URI               \
      -Dspring.cloud.config.uri=$CONFIGSERVER_URI                            \
      -Dspring.profiles.active=$PROFILE                                      \
+     -Dsecurity.oauth2.resource.userInfoUri=$AUTHSERVER_URI                 \
      -jar /usr/local/license-service/@project.build.finalName@.jar
