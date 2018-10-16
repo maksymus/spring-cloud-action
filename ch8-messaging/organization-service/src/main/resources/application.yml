@@ -7,7 +7,26 @@ eureka:
     serviceUrl:
         defaultZone: http://discovery-server:8761/eureka/
 
-security:
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:8901/auth/user
+#security:
+#  oauth2:
+#    resource:
+#      userInfoUri: http://localhost:8901/auth/user
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+            destination:  orgChangeTopic
+            content-type: application/json
+      kafka:
+        binder:
+          zkNodes: localhost
+          brokers: localhost
+
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    org.cloud.action: DEBUG

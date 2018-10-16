@@ -35,19 +35,6 @@ services:
         DATABASESERVER_PORT:      "5432"
         CONFIGSERVER_PORT:        "8888"
         ORGSERVERNEW_PORT:        "8087"
-  authentication-server:
-        image: maxbezko/tmx-authentication-server:chapter8
-        ports:
-          - "8901:8901"
-        environment:
-          PROFILE: "default"
-          SERVER_PORT: "8901"
-          DATABASE_PORT:     5432
-          CONFIGSERVER_PORT: 8888
-          EUREKASERVER_PORT: 8761
-          CONFIGSERVER_URI: "http://config-server:8888"
-          EUREKASERVER_URI: "http://discovery-server:8761/eureka/"
-          ENCRYPT_KEY:       "IMSYMMETRIC"
   database:
       image: postgres:9.5
       ports:
@@ -71,6 +58,9 @@ services:
         DATABASESERVER_PORT: "5432"
         ZUULSERVER_PORT:     "5555"
         ENCRYPT_KEY:       "IMSYMMETRIC"
+        KAFKASERVER_URI: "kafkaserver"
+        ZKSERVER_URI: "kafkaserver"
+        KAFKASERVER_PORT:    "2181"
   organization-service:
       image: maxbezko/tmx-organization-service:chapter8
       ports:
@@ -85,6 +75,9 @@ services:
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "5432"
         ENCRYPT_KEY:       "IMSYMMETRIC"
+        KAFKASERVER_URI: "kafkaserver"
+        ZKSERVER_URI: "kafkaserver"
+        KAFKASERVER_PORT:    "2181"
 #  organization-service2:
 #      image: maxbezko/tmx-organization-service:chapter8
 #      ports:
@@ -98,3 +91,9 @@ services:
 #        CONFIGSERVER_PORT:   "8888"
 #        DATABASESERVER_PORT: "5432"
 #        ENCRYPT_KEY:       "IMSYMMETRIC"
+
+  kafkaserver:
+      image: spotify/kafka
+      ports:
+        - 2181:2181
+        - 9092:9092
