@@ -1,9 +1,11 @@
 package org.cloud.action.license.model;
 
+import java.io.Serializable;
+
 /**
  * Entity of organization-service
  */
-public class Organization {
+public class Organization implements Serializable {
     String id;
     String name;
     String contactName;

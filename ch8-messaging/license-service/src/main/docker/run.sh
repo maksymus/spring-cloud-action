@@ -25,6 +25,12 @@ while ! `nc -z kafkaserver $KAFKASERVER_PORT`; do sleep 10; done
 echo "******* Kafka Server has started"
 
 echo "********************************************************"
+echo "Waiting for the redis server to start on port  $REDIS_PORT"
+echo "********************************************************"
+while ! `nc -z redis $REDIS_PORT`; do sleep 10; done
+echo "******* Redis Server has started"
+
+echo "********************************************************"
 echo "Starting License Server with Configuration Service :  $CONFIGSERVER_URI";
 echo "Using Kafka Server: $KAFKASERVER_URI"
 echo "Using ZK    Server: $ZKSERVER_URI"
