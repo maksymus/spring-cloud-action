@@ -1,11 +1,11 @@
 version: '2'
 services:
   discovery-server:
-     image:   maxbezko/tmx-discovery-server:chapter8
+     image:   maxbezko/tmx-discovery-server:chapter9
      ports:
        - "8761:8761"
   config-server:
-      image: maxbezko/tmx-config-server:chapter8
+      image: maxbezko/tmx-config-server:chapter9
       ports:
          - "8888:8888"
       environment:
@@ -13,7 +13,7 @@ services:
          EUREKASERVER_PORT: "8761"
          ENCRYPT_KEY:       "IMSYMMETRIC"
   # configserver2:
-  #     image: maxbezko/tmx-config-server:chapter8
+  #     image: maxbezko/tmx-config-server:chapter9
   #     ports:
   #        - "8889:8889"
   #     links:
@@ -23,7 +23,7 @@ services:
   #       EUREKASERVER_PORT:8761
   #       ENCRYPT_KEY:       "IMSYMMETRIC"
   routing-server:
-      image: maxbezko/tmx-routing-server:chapter8
+      image: maxbezko/tmx-routing-server:chapter9
       ports:
         - "5555:5555"
       environment:
@@ -44,7 +44,7 @@ services:
         - POSTGRES_PASSWORD=p0stgr@s
         - POSTGRES_DB=eagle_eye_local
   license-service:
-      image: maxbezko/tmx-license-service:chapter8
+      image: maxbezko/tmx-license-service:chapter9
       ports:
         - "8080:8080"
       environment:
@@ -63,7 +63,7 @@ services:
         KAFKASERVER_PORT:    "2181"
         REDIS_PORT:          "6379"
   organization-service:
-      image: maxbezko/tmx-organization-service:chapter8
+      image: maxbezko/tmx-organization-service:chapter9
       ports:
         - "8085:8085"
       environment:
@@ -80,7 +80,7 @@ services:
         ZKSERVER_URI: "kafkaserver"
         KAFKASERVER_PORT:    "2181"
 #  organization-service2:
-#      image: maxbezko/tmx-organization-service:chapter8
+#      image: maxbezko/tmx-organization-service:chapter9
 #      ports:
 #        - "8086:8086"
 #      environment:
