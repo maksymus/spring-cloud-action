@@ -1,4 +1,6 @@
 spring:
+  zipkin:
+     baseUrl: localhost:9411
   application:
     name: routing-server
   profiles:

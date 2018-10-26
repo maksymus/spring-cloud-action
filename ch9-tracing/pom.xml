@@ -22,10 +22,11 @@
         <module>config-server</module>
         <module>discovery-server</module>
         <module>routing-server</module>
+        <module>zipkin-server</module>
+        <module>authentication-server</module>
         <module>license-service</module>
         <module>organization-service</module>
         <module>utils</module>
-        <module>authentication-server</module>
     </modules>
 
     <build>

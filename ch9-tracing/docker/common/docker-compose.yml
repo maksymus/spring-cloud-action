@@ -35,6 +35,8 @@ services:
         DATABASESERVER_PORT:      "5432"
         CONFIGSERVER_PORT:        "8888"
         ORGSERVERNEW_PORT:        "8087"
+        ZIPKIN_URI:               "http://zipkin:9411"
+        ZIPKIN_PORT:              "9411"
   database:
       image: postgres:9.5
       ports:
@@ -62,6 +64,9 @@ services:
         ZKSERVER_URI: "kafkaserver"
         KAFKASERVER_PORT:    "2181"
         REDIS_PORT:          "6379"
+        ZIPKIN_URI:               "http://zipkin:9411"
+        ZIPKIN_PORT:              "9411"
+
   organization-service:
       image: maxbezko/tmx-organization-service:chapter9
       ports:
@@ -79,6 +84,9 @@ services:
         KAFKASERVER_URI: "kafkaserver"
         ZKSERVER_URI: "kafkaserver"
         KAFKASERVER_PORT:    "2181"
+        ZIPKIN_URI:               "http://zipkin:9411"
+        ZIPKIN_PORT:              "9411"
+
 #  organization-service2:
 #      image: maxbezko/tmx-organization-service:chapter9
 #      ports:
@@ -102,3 +110,9 @@ services:
       image: redis:alpine
       ports:
         - 6379:6379
+  zipkin:
+    image: maxbezko/tmx-zipkinsvr:chapter9
+    ports:
+      - "9411:9411"
+    environment:
+      SERVER_PORT: "9411"
