@@ -4,6 +4,3 @@ mvn clean package docker:build
 # Run
 docker-compose -f docker/common/docker-compose.yml up
 
-postgres:
-spring.datasource.password: "{cipher}b777b6257d0afacac47c13c4ab85f6c841d930872c0c64a78de3cd198dc78e3e"
-
