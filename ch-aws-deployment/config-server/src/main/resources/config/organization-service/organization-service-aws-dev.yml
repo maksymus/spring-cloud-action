@@ -1,0 +1,12 @@
+example.organization.property: "I AM THE DEFAULT ORGANIZATION SERVICE"
+
+spring.jpa.database: "POSTGRESQL"
+spring.datasource.platform:  "postgres"
+spring.jpa.show-sql: "true"
+spring.database.driverClassName: "org.postgresql.Driver"
+spring.datasource.url: "jdbc:postgresql://spring-cloud-action.cw2plon3q382.us-east-1.rds.amazonaws.com:5432/spring_cloud_action"
+spring.datasource.username: "postgres"
+spring.datasource.password: "{cipher}b777b6257d0afacac47c13c4ab85f6c841d930872c0c64a78de3cd198dc78e3e"
+spring.datasource.testWhileIdle: "true"
+spring.datasource.validationQuery: "SELECT 1"
+spring.jpa.properties.hibernate.dialect: "org.hibernate.dialect.PostgreSQLDialect"
